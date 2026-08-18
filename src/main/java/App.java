@@ -16,10 +16,10 @@ public class App {
     }
 
     public static void start(AppData appData) {
-        //
+        //метод запускается при старте программы
     }
 
     public static void end(AppData appData) {
-        //����� ��������� ������ � ����� ��� ���������� ���������
+        //метод запускается при закрытии программы
     }
 }
