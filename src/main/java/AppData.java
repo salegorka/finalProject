@@ -1,24 +1,59 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppData {
-    private List<Bus> datalist;
-    //To DO реализовать класс для хранения списка объектов
+    private List<Bus> busList;
+    //To DO
 
-    // возвращает размер коллекции
+
+    public AppData() {
+        this.busList = List.of();
+    }
+
+    public AppData(List<Bus> busList) {
+        this.busList = busList;
+    }
+
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public int size() {
-        return 0;
+        return this.busList.size();
     }
 
-    //сравнивает объекты по полю выбранному по индексу
-    public boolean compareByFieldIndex(int i, int j, int index) {
-        return false;
+    //РјРµС‚РѕРґ РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
+    public boolean compareByFieldIndexAsc(int i, int j, int index) throws IndexOutOfBoundsException {
+        if (index == 0) {
+            return this.busList.get(i).number < this.busList.get(j).number;
+        } else if(index == 1) {
+            return this.busList.get(i).model < this.busList.get(j).model;
+        } else if(index == 2) {
+            return this.busList.get(i).mileage < this.busList.get(j).mileage;
+        } else {
+           throw new IndexOutOfBoundsException("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        };
     }
 
-    //перемешивает в случайном порядке
+    public boolean compareByFieldIndexDesc(int i, int j, int index) throws IndexOutOfBoundsException {
+        if (index == 0) {
+            return this.busList.get(i).number > this.busList.get(j).number;
+        } else if(index == 1) {
+            return this.busList.get(i).model > this.busList.get(j).model;
+        } else if(index == 2) {
+            return this.busList.get(i).mileage > this.busList.get(j).mileage;
+        } else {
+            throw new IndexOutOfBoundsException("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        };
+    }
+
+    //РјРµС‚РѕРґ РїРµСЂРјРµС€РёРІР°РµС‚ РјР°СЃСЃРёРІ РІ СЃР»СѓС‡Р°Р№РЅРѕРј РїРѕСЂСЏРґРєРµ
     public void random() {
 
     }
 
-    //другие методы конструктор, геттеры, сеттеры, доступ к конкретному объекту
+    public List<Bus> getBuslit() {
+        return this.busList;
+    }
 
+    public void setBusList(List<Bus> busList) {
+        this.busList = busList;
+    }
 }

@@ -5,7 +5,7 @@ public class App {
         AppData appData = new AppData();
         CommandRouter router = new CommandRouter();
         start(appData);
-        System.out.println("Консольное приложение для сортировки объектов. Для получения списка комманд введите help");
+        System.out.println("РљРѕРЅСЃРѕР»СЊРЅР°СЏ СѓС‚РёР»РёС‚Р° РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РѕР±СЉРµРєС‚РѕРІ help");
         while(true) {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
@@ -16,10 +16,10 @@ public class App {
     }
 
     public static void start(AppData appData) {
-        //метод загружает данные в appData при старте программы
+        //
     }
 
     public static void end(AppData appData) {
-        //метод сохраняет данные в файле при завершении программы
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 }
