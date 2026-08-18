@@ -1,5 +1,5 @@
 public class CommandRouter {
-    //����� ������� �������� ������� �������, ������� ���������
+
     public Command currentCommand;
 
     public void setCurrentCommand(String command) {

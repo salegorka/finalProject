@@ -14,7 +14,7 @@ public class AppData {
         this.busList = busList;
     }
 
-    // ���������� ������ ���������
+    // метод возращает размер массива
     public int size() {
         return this.busList.size();
     }
@@ -28,7 +28,7 @@ public class AppData {
         } else if(index == 2) {
             return this.busList.get(i).mileage < this.busList.get(j).mileage;
         } else {
-           throw new IndexOutOfBoundsException("�������� ������ ���� ��� ���������");
+           throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
         };
     }
 
@@ -40,7 +40,7 @@ public class AppData {
         } else if(index == 2) {
             return this.busList.get(i).mileage > this.busList.get(j).mileage;
         } else {
-            throw new IndexOutOfBoundsException("�������� ������ ���� ��� ���������");
+            throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
         };
     }
 
