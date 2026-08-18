@@ -1,17 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AppData {
     private List<Bus> busList;
+    private final Random random;
     //To DO
 
 
     public AppData() {
         this.busList = List.of();
+        this.random = new Random();
     }
 
-    public AppData(List<Bus> busList) {
+    public AppData(List<Bus> busList, Random random) {
         this.busList = busList;
+        this.random = random;
     }
 
     // метод возращает размер массива
@@ -28,7 +32,7 @@ public class AppData {
         } else if(index == 2) {
             return this.busList.get(i).mileage < this.busList.get(j).mileage;
         } else {
-           throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
+            throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
         };
     }
 
@@ -44,9 +48,22 @@ public class AppData {
         };
     }
 
+    public void setDatalist(List<Bus> datalist) {
+        this.busList = datalist;
+    }
+
+
     //метод пермешивает массив в случайном порядке
     public void random() {
+        // Fisher-Yates shuffle
+        for (int i = busList.size() - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
 
+            // Swap
+            Bus temp = busList.get(i);
+            busList.set(i, busList.get(j));
+            busList.set(j, temp);
+        }
     }
 
     public List<Bus> getBuslit() {
