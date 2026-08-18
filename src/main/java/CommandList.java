@@ -2,6 +2,6 @@ public class CommandList implements Command {
 
     @Override
     public void execute(String command, AppData data) {
-        //команда которая выводит список объектов на консоль
+        //РєРѕРјР°РЅРґР° РґР»СЏ РІС‹РІРѕРґР° СЃРїРёСЃРєР° РѕР±СЉРµРєС‚РѕРІ
     }
 }
