@@ -3,17 +3,21 @@ import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Random;
 
 public class AppData {
     private List<Bus> busList;
     private static final String CSV_FILE = "buses.csv";
+    private final Random random;
 
     public AppData() {
         this.busList = new ArrayList<>();
+        this.random = new Random();
     }
 
-    public AppData(List<Bus> busList) {
+    public AppData(List<Bus> busList, Random random) {
         this.busList = busList;
+        this.random = random;
     }
 
     // метод возращает размер массива
@@ -54,9 +58,22 @@ public class AppData {
         this.busList.set(j, temp);
     }
 
+    public void setDatalist(List<Bus> datalist) {
+        this.busList = datalist;
+    }
+
+
     //метод пермешивает массив в случайном порядке
     public void random() {
 
+        for (int i = busList.size() - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+
+
+            Bus temp = busList.get(i);
+            busList.set(i, busList.get(j));
+            busList.set(j, temp);
+        }
     }
 
     public List<Bus> getBusList() {
@@ -66,7 +83,7 @@ public class AppData {
     public void setBusList(List<Bus> busList) {
         this.busList = busList;
     }
-    
+
     //загружаем список автобусов из csv-файла
     public void loadFromCsv() {
         List<Bus> loaded = new ArrayList<>();
