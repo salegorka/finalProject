@@ -79,11 +79,11 @@ public class CommandQuickSort implements Command {
         int i = low;
         int j = high;
 
-        while(i <= j) {
-            while(data.compare(i, middle, fieldIndex, asc)) {
+        while (i <= j) {
+            while (data.compare(i, middle, fieldIndex, asc)) {
                 i++;
             }
-            while(data.compare(middle, j, fieldIndex, asc)) {
+            while (data.compare(middle, j, fieldIndex, asc)) {
                 j--;
             }
             if (i <= j) {
@@ -118,12 +118,12 @@ public class CommandQuickSort implements Command {
         busList.add(bus5);
         AppData data = new AppData(busList);
         System.out.println("Исходный список");
-        for(int i = 0; i < data.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
             System.out.println(data.getBusList().get(i).toString());
         }
         Command command = new CommandQuickSort();
         command.execute("quickSort", data);
-        for(int i = 0; i < data.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
             System.out.println(data.getBusList().get(i).toString());
         }
     }
