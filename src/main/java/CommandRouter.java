@@ -12,6 +12,9 @@ public class CommandRouter {
             case "quick":
                 this.currentCommand = new CommandQuickSort();
                 break;
+            case "selection":
+                this.currentCommand = new CommandSelectionSort();
+                break;
             case "bubble":
                 // пока заглушка
                 System.out.println("Команда bubble пока не реализована.");
