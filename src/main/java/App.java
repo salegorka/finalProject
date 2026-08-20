@@ -6,20 +6,36 @@ public class App {
         CommandRouter router = new CommandRouter();
         start(appData);
         System.out.println("Консольная утилита для сортировки объектов help");
-        while(true) {
-            Scanner scanner = new Scanner(System.in);
-            String command = scanner.nextLine();
+        
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+        while(running ) {
+            String command = scanner.nextLine().trim();
+            if(command.isEmpty()) continue;
+
+            if(command.equalsIgnoreCase("exit")) {
+                running = false;
+                end(appData);
+                System.out.println("Программа завершена");
+                break;
+            }
+
             router.setCurrentCommand(command);
-            router.currentCommand.execute(command, appData);
+            if(router.currentCommand != null) {
+                router.currentCommand.execute(command, appData);                
+            } else {
+                System.out.println("Неизвестная команда. Введите help.");
+            }
         }
 
+        scanner.close();
     }
 
     public static void start(AppData appData) {
-        //метод запускается при старте программы
+        appData.loadFromCsv();
     }
 
     public static void end(AppData appData) {
-        //метод запускается при закрытии программы
+        appData.saveToCsv();
     }
 }
