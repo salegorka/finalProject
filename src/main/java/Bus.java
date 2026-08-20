@@ -33,9 +33,9 @@ public class Bus {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bus bus = (Bus) o;
-        return number == bus.number && 
-               mileage == bus.mileage && 
-               Objects.equals(model, bus.model);
+        return number == bus.number &&
+                mileage == bus.mileage &&
+                Objects.equals(model, bus.model);
     }
 
     @Override

@@ -5,7 +5,7 @@ public class CommandRouter {
     public void setCurrentCommand(String command) {
         String[] commandList = command.trim().split(" ");
         String cmd = commandList[0].toLowerCase();
-        switch(cmd) {
+        switch (cmd) {
             case "help":
                 this.currentCommand = new CommandHelp();
                 break;
