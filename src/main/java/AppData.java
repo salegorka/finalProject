@@ -113,11 +113,11 @@ public class AppData {
                             .mileage(mileage)
                             .build();
                     loaded.add(bus);
-                } catch (IllegalArgumentException e) {
-                    System.err.println("Пропущена строка " + lineNumber + ": " + e.getMessage());
                 } catch (NumberFormatException e) {
                     System.err.println("Пропущена строка " + lineNumber + ": неверное число");
-                }
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Пропущена строка " + lineNumber + ": " + e.getMessage());
+                } 
             }
             this.setBusList(loaded);
             System.out.println("Загружено " + loaded.size() + " автобусов из " + CSV_FILE);
