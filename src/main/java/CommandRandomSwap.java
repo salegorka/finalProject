@@ -8,7 +8,7 @@ public class CommandRandomSwap implements Command {
             return;
         }
         System.out.println("=== Перемешивание списка ===");
-        data.random();  // Просто вызываем метод из AppData
+        data.random();
         System.out.println("Список перемешан");
     }
 }

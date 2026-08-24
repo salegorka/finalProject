@@ -28,9 +28,9 @@ public class AppData {
         if (asc) {
             if (index == 0) {
                 return this.busList.get(i).getNumber() < this.busList.get(j).getNumber();
-            } else if(index == 1) {
+            } else if (index == 1) {
                 return this.busList.get(i).getModel().compareTo(this.busList.get(j).getModel()) < 0;
-            } else if(index == 2) {
+            } else if (index == 2) {
                 return this.busList.get(i).getMileage() < this.busList.get(j).getMileage();
             } else {
                 throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
@@ -38,9 +38,9 @@ public class AppData {
         } else {
             if (index == 0) {
                 return this.busList.get(i).getNumber() > this.busList.get(j).getNumber();
-            } else if(index == 1) {
+            } else if (index == 1) {
                 return this.busList.get(i).getModel().compareTo(this.busList.get(j).getModel()) > 0;
-            } else if(index == 2) {
+            } else if (index == 2) {
                 return this.busList.get(i).getMileage() > this.busList.get(j).getMileage();
             } else {
                 throw new IndexOutOfBoundsException("Неверный индекс поля для сортировки");
@@ -80,7 +80,7 @@ public class AppData {
     //загружаем список автобусов из csv-файла
     public void loadFromCsv() {
         List<Bus> loaded = new ArrayList<>();
-        if(!Files.exists(Paths.get(CSV_FILE))) {
+        if (!Files.exists(Paths.get(CSV_FILE))) {
             System.out.println("CSV файл не найден. Начинаем с пустого списка.");
             this.setBusList(loaded);
             return;
@@ -110,7 +110,7 @@ public class AppData {
                     System.err.println("Пропущена строка " + lineNumber + ": неверное число");
                 } catch (IllegalArgumentException e) {
                     System.err.println("Пропущена строка " + lineNumber + ": " + e.getMessage());
-                } 
+                }
             }
             this.setBusList(loaded);
             System.out.println("Загружено " + loaded.size() + " автобусов из " + CSV_FILE);

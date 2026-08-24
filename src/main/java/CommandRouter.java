@@ -5,12 +5,21 @@ public class CommandRouter {
     public void setCurrentCommand(String command) {
         String[] commandList = command.trim().split(" ");
         String cmd = commandList[0].toLowerCase();
-        switch(cmd) {
+        switch (cmd) {
             case "help":
                 this.currentCommand = new CommandHelp();
                 break;
             case "quick":
                 this.currentCommand = new CommandQuickSort();
+                break;
+            case "selection":
+                this.currentCommand = new CommandSelectionSort();
+                break;
+            case "bubblesorteven":
+                this.currentCommand = new CommandBubbleSortEven();
+                break;
+            case "selectionsorteven":
+                this.currentCommand = new CommandSelectionSortEven();
                 break;
             case "bubble":
                 // пока заглушка
