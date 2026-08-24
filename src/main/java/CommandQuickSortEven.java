@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CommandQuickSort implements Command {
+public class CommandQuickSortEven implements Command {
+
     @Override
     public void execute(String command, AppData data) {
-        System.out.println("Быстрая сортировка.");
+        System.out.println("Быстрая сортировка только чётных элементов");
         int fieldIndex = 0;
         boolean asc = true;
         String[] parts = command.split("\\s+");
@@ -15,7 +16,7 @@ public class CommandQuickSort implements Command {
             System.out.println("Заданы параметры");
             try {
                 fieldIndex = Integer.parseInt(parts[1]);
-                if (fieldIndex >= 3 || fieldIndex < 0) {
+                if (!(fieldIndex == 2 || fieldIndex == 0)) {
                     throw new Exception();
                 }
             } catch (Exception e) {
@@ -32,21 +33,21 @@ public class CommandQuickSort implements Command {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Ошибка при чтении второго параметра.");
+                System.out.println("Ошибка при чтении второго параметра. ");
                 this.printUsage();
                 return;
             }
         } else {
-            System.out.println("Параметры не заданы");
-            System.out.println("Выберите поле для сортировки (0,1,2)");
+            System.out.println("Параметры не заданы.");
+            System.out.println("Выберите поле для сортировки (0,2)");
             Scanner scanner = new Scanner(System.in);
             try {
                 fieldIndex = scanner.nextInt();
-                if (fieldIndex >= 3 || fieldIndex < 0) {
+                if (!(fieldIndex == 2 || fieldIndex == 0)) {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Ошибка при чтении индекса поля.");
+                System.out.println("Ошибка при чтении индекса поля. ");
                 this.printUsage();
                 return;
             }
@@ -70,30 +71,70 @@ public class CommandQuickSort implements Command {
             }
         }
         System.out.println("Начинаю сортировку");
-        quickSort(data, 0, data.size() - 1, fieldIndex, asc);
+        quickSortEven(data, 0, data.size() - 1, fieldIndex, asc);
         System.out.println("Массив отсортирован");
+
+
     }
 
-    public void quickSort(AppData data, int low, int high, int fieldIndex, boolean asc) {
+
+    public int findEvenPivot(AppData data, int low, int high, int fieldIndex) {
+        int mid = low + (high - low) / 2;
+
+        for (int offset = 0; offset <= (high - low); offset++) {
+            if (mid + offset <= high && this.isEven(data, mid + offset, fieldIndex)) {
+                return mid + offset;
+            }
+            if (mid - offset >= low && this.isEven(data, mid - offset, fieldIndex)) {
+                return mid - offset;
+            }
+        }
+
+        return -1;
+    }
+
+    public boolean isOdd(AppData data, int index, int fieldIndex) {
+        if (fieldIndex == 0) {
+            return data.getBusList().get(index).getNumber() % 2 == 1;
+        }
+        if (fieldIndex == 2) {
+            return data.getBusList().get(index).getMileage() % 2 == 1;
+        }
+        return false;
+    }
+    public boolean isEven(AppData data, int index, int fieldIndex) {
+        if (fieldIndex == 0) {
+            return data.getBusList().get(index).getNumber() % 2 == 0;
+        }
+        if (fieldIndex == 2) {
+            return data.getBusList().get(index).getMileage() % 2 == 0;
+        }
+        return false;
+    }
+
+    public void quickSortEven(AppData data, int low, int high, int fieldIndex, boolean asc) {
         if (data.size() == 0) {
             return;
         }
+
         if (low >= high) {
             return;
         }
 
-        int middle = low + (high - low) / 2;
+        int pivotIndex = findEvenPivot(data, low, high, fieldIndex);
+        if (pivotIndex == -1) return;
 
         int i = low;
         int j = high;
 
         while (i <= j) {
-            while (data.compare(i, middle, fieldIndex, asc)) {
+            while (i <= j && (this.isOdd(data, i, fieldIndex) || data.compare(i, pivotIndex, fieldIndex, asc))) {
                 i++;
             }
-            while (data.compare(middle, j, fieldIndex, asc)) {
+            while (i <= j && (this.isOdd(data, j, fieldIndex) || data.compare(pivotIndex, j, fieldIndex, asc))) {
                 j--;
             }
+
             if (i <= j) {
                 data.swap(i, j);
                 i++;
@@ -102,28 +143,28 @@ public class CommandQuickSort implements Command {
         }
 
         if (low < j) {
-            quickSort(data, low, j, fieldIndex, asc);
+            quickSortEven(data, low, j, fieldIndex, asc);
         }
         if (high > i) {
-            quickSort(data, i, high, fieldIndex, asc);
+            quickSortEven(data, i, high, fieldIndex, asc);
         }
+
     }
 
     public void printUsage() {
-        System.out.println("Формат команды quickSort <Поле> <Порядок>");
-        System.out.println("Поле: 0 - номер, 1 - модель или 2 - пробег");
+        System.out.println("Формат команды quickSortEven <Поле> <Порядок>");
+        System.out.println("Поле: 0 - номер или 2 - пробег");
         System.out.println("Порядок: asc - возрастание или desc - убывание");
-        System.out.println("Пример команды: quickSort 0 asc");
+        System.out.println("Пример команды: quickSortEven 0 asc");
     }
 
-    //Метод для тестирования сортировки
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
-        Bus bus1 = new Bus.Builder().number(10).model("Камаз").mileage(1000).build();
+        Bus bus1 = new Bus.Builder().number(12).model("Камаз").mileage(1001).build();
         Bus bus2 = new Bus.Builder().number(5).model("ВАЗ").mileage(5000).build();
-        Bus bus3 = new Bus.Builder().number(15).model("Нива").mileage(2000).build();
+        Bus bus3 = new Bus.Builder().number(15).model("Нива").mileage(2001).build();
         Bus bus4 = new Bus.Builder().number(7).model("Белаз").mileage(3000).build();
-        Bus bus5 = new Bus.Builder().number(12).model("Мерседес").mileage(2500).build();
+        Bus bus5 = new Bus.Builder().number(10).model("Мерседес").mileage(2500).build();
 
         List<Bus> busList = new ArrayList<>();
         busList.add(bus1);
@@ -136,8 +177,8 @@ public class CommandQuickSort implements Command {
         for (int i = 0; i < data.size(); i++) {
             System.out.println(data.getBusList().get(i).toString());
         }
-        Command command = new CommandQuickSort();
-        command.execute("quickSort", data);
+        Command command = new CommandQuickSortEven();
+        command.execute("quickSortEven", data);
         for (int i = 0; i < data.size(); i++) {
             System.out.println(data.getBusList().get(i).toString());
         }
