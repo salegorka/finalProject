@@ -55,24 +55,6 @@ public class AppData {
         this.busList.set(j, temp);
     }
 
-    public void setDatalist(List<Bus> datalist) {
-        this.busList = datalist;
-    }
-
-    public void randomSwap() {
-        if (busList.isEmpty()) {
-            System.out.println("Список пуст");
-            return;
-        }
-
-        Random random = new Random();
-
-        for (int i = busList.size() - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
-            swap(i, j);
-        }
-    }
-
     //метод пермешивает массив в случайном порядке
     public void random() {
         Random random = new Random();
