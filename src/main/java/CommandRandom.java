@@ -30,6 +30,9 @@ public class CommandRandom implements Command {
         // Генерируем случайные автобусы
         List<Bus> buses = generateRandomBuses(count);
 
+        // Устанавливаем автобусы
+        data.setBusList(buses);
+
         // Перемешиваем список
         data.random();
 
