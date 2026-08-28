@@ -6,6 +6,7 @@ public class CommandHelp implements Command {
         System.out.println("  help          - показать эту справку");
         System.out.println("  exit          - завершить программу");
         System.out.println("  quick [поле] [asc|desc] - быстрая сортировка");
+        System.out.println("  save <имя_файла> - сохранить текущий список в указанный файл (добавление)");
         System.out.println("  bubbleSortEven [0|2] [asc|desc] - пузырьковая сортировка только чётных значений");
         System.out.println("  selectionSortEven [0|2] [asc|desc] - сортировка выбором только чётных значений");
         System.out.println("  bubble        - сортировка пузырьком (скоро)");

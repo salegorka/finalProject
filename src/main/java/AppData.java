@@ -133,4 +133,34 @@ public class AppData {
             System.err.println("Ошибка сохранения файла: " + e.getMessage());
         }
     }
+
+        /**
+     * Сохраняет текущий список автобусов в указанный файл.
+     * @param fileName имя файла
+     * имя не должно быть пустым и не должно содержать недопустимые символы.
+     */
+    public void appendToFile(String fileName) {
+        //Проверка на null или пустую строку
+        if (fileName == null || fileName.trim().isEmpty()) {
+            System.err.println("Ошибка: имя файла не может быть пустым.");
+            return;
+        }
+
+        //Проверка на недопустимые символы
+        if (fileName.matches(".*[\\\\/:*?\"<>|].*")) {
+            System.err.println("Ошибка: имя файла содержит недопустимые символы (\\ / : * ? \" < > |).");
+            return;
+        }
+
+        // добавление в конец файла
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            for (Bus bus : this.busList) {
+                writer.write(bus.getNumber() + "," + bus.getModel() + "," + bus.getMileage());
+                writer.newLine();
+            }
+            System.out.println("Добавлено " + this.busList.size() + " записей в файл " + fileName);
+        } catch (IOException e) {
+            System.err.println("Ошибка записи в файл: " + e.getMessage());
+        }
+    }
 }

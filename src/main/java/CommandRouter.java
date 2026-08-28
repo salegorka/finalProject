@@ -38,6 +38,9 @@ public class CommandRouter {
                 System.out.println("Команда file пока не реализована.");
                 this.currentCommand = null;
                 break;
+            case "save":
+                this.currentCommand = new CommandSaveToFile();
+                break;
             default:
                 this.currentCommand = null;
                 break;
