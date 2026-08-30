@@ -10,7 +10,7 @@ public class CommandHelp implements Command {
         System.out.println("  bubbleSortEven [0|2] [asc|desc] - пузырьковая сортировка только чётных значений");
         System.out.println("  selectionSortEven [0|2] [asc|desc] - сортировка выбором только чётных значений");
         System.out.println("  bubble        - сортировка пузырьком (скоро)");
-        System.out.println("  list          - показать текущий список (скоро)");
+        System.out.println("  list          - показать текущий список");
         System.out.println("  random        - заполнить случайными данными (скоро)");
         System.out.println("  file          - загрузить из файла (скоро)");
         System.out.println("Поля: 0 - номер, 1 - модель, 2 - пробег");
