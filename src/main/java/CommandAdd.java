@@ -23,6 +23,16 @@ public class CommandAdd implements Command {
         System.out.println("  • Модель: не может быть пустой");
         System.out.println("  • Пробег: неотрицательное число (до 1,000,000 км)");
         System.out.println("----------------------------------------");
+        System.out.println("Будет загружен существующий список из файла.");
+        System.out.println("Новые автобусы будут добавлены к существующим.");
+
+        if (data.size() > 0) {
+            CommandList listCommand = new CommandList();
+            listCommand.execute("list", data);
+        } else {
+            System.out.println("Список пуст.");
+        }
+        System.out.println();
         
         int addedCount = 0;
         int lineNumber = 0;
@@ -155,35 +165,7 @@ public class CommandAdd implements Command {
                 System.out.println("Изменения не сохранены.");
             }
         }
-        System.out.println();
-    }
 
-    // Метод main для тестирования команды add
-    public static void main(String[] args) {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
-        
-        System.out.println("=== Тестирование команды add ===");
-        System.out.println("Будет загружен существующий список из файла.");
-        System.out.println("Новые автобусы будут добавлены к существующим.");
-        System.out.println();
-        
-        AppData data = new AppData();
-        data.loadFromCsv();
-        
-        System.out.println("Текущий размер списка: " + data.size() + " автобусов");
-        
-        if (data.size() > 0) {
-            CommandList listCommand = new CommandList();
-            listCommand.execute("list", data);
-        } else {
-            System.out.println("Список пуст.");
-        }
-        
-        System.out.println();
-        
-        CommandAdd command = new CommandAdd();
-        command.execute("add", data);
-        
         System.out.println("\n=== Итоговый список автобусов ===");
         if (data.getBusList().isEmpty()) {
             System.out.println("Список пуст.");
@@ -191,5 +173,16 @@ public class CommandAdd implements Command {
             CommandList listCommand = new CommandList();
             listCommand.execute("list", data);
         }
+        System.out.println();
+    }
+
+    // Метод main для тестирования команды add
+    public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+        System.out.println("=== Тестирование команды add ===");
+        AppData data = new AppData();
+        data.loadFromCsv();
+        CommandAdd command = new CommandAdd();
+        command.execute("add", data);
     }
 }
