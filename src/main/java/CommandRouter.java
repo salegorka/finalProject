@@ -27,6 +27,9 @@ public class CommandRouter {
             case "list":
                 this.currentCommand = new CommandList();
                 break;
+            case "add":
+                this.currentCommand = new CommandAdd();
+                break;
             case "random":
                 System.out.println("Команда random пока не реализована.");
                 this.currentCommand = null;

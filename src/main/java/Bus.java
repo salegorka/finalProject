@@ -73,7 +73,7 @@ public class Bus {
                 throw new IllegalArgumentException("Bus number must be positive");
             }
             if (number > 999999) {
-                throw new IllegalArgumentException("Bus number cannot exceed 999999");
+                throw new IllegalArgumentException("Bus number cannot exceed 9999");
             }
             if (model == null || model.trim().isEmpty()) {
                 throw new IllegalArgumentException("Model cannot be empty");

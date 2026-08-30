@@ -13,6 +13,7 @@ public class CommandHelp implements Command {
         System.out.println("  list          - показать текущий список");
         System.out.println("  bubble [поле] [asc|desc] - сортировка пузырьком");
         System.out.println("  list          - показать текущий список (скоро)");
+        System.out.println("  add           - ввод данных вручную");
         System.out.println("  random        - заполнить случайными данными (скоро)");
         System.out.println("  file          - загрузить из файла (скоро)");
         System.out.println("Поля: 0 - номер, 1 - модель, 2 - пробег");
