@@ -29,7 +29,7 @@ public class AppData {
             if (index == 0) {
                 return this.busList.get(i).getNumber() < this.busList.get(j).getNumber();
             } else if (index == 1) {
-                return this.busList.get(i).getModel().compareTo(this.busList.get(j).getModel()) < 0;
+                return this.busList.get(i).getModel().compareToIgnoreCase(this.busList.get(j).getModel()) < 0;
             } else if (index == 2) {
                 return this.busList.get(i).getMileage() < this.busList.get(j).getMileage();
             } else {
@@ -39,7 +39,7 @@ public class AppData {
             if (index == 0) {
                 return this.busList.get(i).getNumber() > this.busList.get(j).getNumber();
             } else if (index == 1) {
-                return this.busList.get(i).getModel().compareTo(this.busList.get(j).getModel()) > 0;
+                return this.busList.get(i).getModel().compareToIgnoreCase(this.busList.get(j).getModel()) > 0;
             } else if (index == 2) {
                 return this.busList.get(i).getMileage() > this.busList.get(j).getMileage();
             } else {

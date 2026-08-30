@@ -22,9 +22,7 @@ public class CommandRouter {
                 this.currentCommand = new CommandSelectionSortEven();
                 break;
             case "bubble":
-                // пока заглушка
-                System.out.println("Команда bubble пока не реализована.");
-                this.currentCommand = null;
+                this.currentCommand = new CommandBubbleSort();
                 break;
             case "list":
                 System.out.println("Команда list пока не реализована.");
