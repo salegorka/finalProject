@@ -1,11 +1,14 @@
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class App {
-    public static void main() {
+    public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         AppData appData = new AppData();
         CommandRouter router = new CommandRouter();
         start(appData);
-        System.out.println("Консольная утилита для сортировки объектов help");
+        System.out.println("Консольная утилита для сортировки объектов. Справка - help.");
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

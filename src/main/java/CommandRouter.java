@@ -12,6 +12,9 @@ public class CommandRouter {
             case "quick":
                 this.currentCommand = new CommandQuickSort();
                 break;
+            case "bubble":
+                this.currentCommand = new CommandBubbleSort();
+                break;
             case "selection":
                 this.currentCommand = new CommandSelectionSort();
                 break;
@@ -21,8 +24,8 @@ public class CommandRouter {
             case "selectionsorteven":
                 this.currentCommand = new CommandSelectionSortEven();
                 break;
-            case "bubble":
-                this.currentCommand = new CommandBubbleSort();
+            case "quicksorteven":
+                this.currentCommand = new CommandQuickSortEven();
                 break;
             case "list":
                 this.currentCommand = new CommandList();
@@ -31,8 +34,10 @@ public class CommandRouter {
                 this.currentCommand = new CommandAdd();
                 break;
             case "random":
-                System.out.println("Команда random пока не реализована.");
-                this.currentCommand = null;
+                this.currentCommand = new CommandRandom();
+                break;
+            case "randomswap":
+                this.currentCommand = new CommandRandomSwap();
                 break;
             case "file":
                 System.out.println("Команда file пока не реализована.");
