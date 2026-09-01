@@ -39,7 +39,7 @@ public class CommandRouter {
             case "randomswap":
                 this.currentCommand = new CommandRandomSwap();
                 break;
-            case "loadFromFile":
+            case "loadfromfile":
                 this.currentCommand = new CommandLoadFromFile();
                 break;
             case "save":
