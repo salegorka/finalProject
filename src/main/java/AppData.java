@@ -120,6 +120,65 @@ public class AppData {
         }
     }
 
+    /**
+     * Загружает список автобусов из указанного CSV-файла.
+     * @param fileName имя файла (может содержать путь)
+     * Валидация: файл должен существовать, быть читаемым и иметь корректный формат.
+     * В случае ошибок список заменяется на пустой.
+    */
+    public void loadFromFile(String fileName) {
+        if (fileName == null || fileName.trim().isEmpty()) {
+            System.err.println("Ошибка: имя файла не может быть пустым.");
+            return;
+        }
+
+        if (!Files.exists(Paths.get(fileName))) {
+            System.err.println("Ошибка: файл не найден: " + fileName);
+            return;
+        }
+
+        if (Files.isDirectory(Paths.get(fileName))) {
+            System.err.println("Ошибка: указана директория, а не файл.");
+            return;
+        }
+
+        List<Bus> loaded = new ArrayList<>();
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName))) {
+            String line;
+            int lineNumber = 0;
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                String[] parts = line.split(",");
+                if (parts.length != 3) {
+                    System.err.println("Пропущена строка " + lineNumber + ": неверный формат (" + line + ")");
+                    continue;
+                }
+                try {
+                    int number = Integer.parseInt(parts[0].trim());
+                    String model = parts[1].trim();
+                    int mileage = Integer.parseInt(parts[2].trim());
+                    Bus bus = new Bus.Builder()
+                            .number(number)
+                            .model(model)
+                            .mileage(mileage)
+                            .build();
+                    loaded.add(bus);
+                } catch (NumberFormatException e) {
+                    System.err.println("Пропущена строка " + lineNumber + ": неверное число");
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Пропущена строка " + lineNumber + ": " + e.getMessage());
+                }
+            }
+            // Если были ошибки, но часть данных загружена, они сохраняются
+            this.setBusList(loaded);
+            System.out.println("Загружено " + loaded.size() + " автобусов из " + fileName);
+        } catch (IOException e) {
+            System.err.println("Ошибка чтения файла: " + e.getMessage());
+            // В случае ошибки список становится пустым
+            this.setBusList(new ArrayList<>());
+        }
+    }
+
     // сохраняем текущий список в csv-файл
     public void saveToCsv() {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_FILE))) {

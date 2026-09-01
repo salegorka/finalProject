@@ -16,8 +16,7 @@ public class CommandHelp implements Command {
         System.out.println("  add           - ввод данных вручную");
         System.out.println("  random        - заполнить случайными данными");
         System.out.println("  randomswap     - случайно перемешивает список");
-        System.out.println("  file          - загрузить из файла (скоро)");
-        System.out.println("Поля: 0 - номер, 1 - модель, 2 - пробег");
+        System.out.println("  loadFromFile <имя_файла> - загрузить список из указанного CSV-файла (заменяет текущий)");        System.out.println("Поля: 0 - номер, 1 - модель, 2 - пробег");
         System.out.println("Пример: quick 1 asc");
     }
 }

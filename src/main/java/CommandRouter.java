@@ -39,9 +39,8 @@ public class CommandRouter {
             case "randomswap":
                 this.currentCommand = new CommandRandomSwap();
                 break;
-            case "file":
-                System.out.println("Команда file пока не реализована.");
-                this.currentCommand = null;
+            case "loadFromFile":
+                this.currentCommand = new CommandLoadFromFile();
                 break;
             case "save":
                 this.currentCommand = new CommandSaveToFile();
