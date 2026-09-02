@@ -1,3 +1,5 @@
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +8,7 @@ public class CommandEvenSortTest {
     private static int passedTests = 0;
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         testBubbleByNumberAscending();
         testBubbleByNumberDescending();
         testBubbleByMileageAscending();

@@ -1,3 +1,5 @@
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class CommandBubbleSortTest {
     private static int failed = 0;
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         testNumberAscending();
         testNumberDescending();
         testModelAscending();
