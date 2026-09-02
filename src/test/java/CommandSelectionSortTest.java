@@ -1,3 +1,5 @@
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +8,7 @@ public class CommandSelectionSortTest {
     private static int passedTests = 0;
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         testSortByNumberAscending();
         testSortByNumberDescending();
         testSortByModelAscending();
@@ -69,7 +72,7 @@ public class CommandSelectionSortTest {
 
     private static void testSingleElement() {
         AppData data = new AppData();
-        data.setDatalist(new ArrayList<>(List.of(createBus(7, "Single", 700))));
+        data.setBusList(new ArrayList<>(List.of(createBus(7, "Single", 700))));
         execute(data, "selection 0 asc");
         assertOrder(data, 7);
         pass("сортировка списка из одного элемента");
@@ -81,7 +84,7 @@ public class CommandSelectionSortTest {
         buses.add(createBus(30, "Beta", 1_000));
         buses.add(createBus(10, "Gamma", 3_000));
         buses.add(createBus(20, "Alpha", 2_000));
-        data.setDatalist(buses);
+        data.setBusList(buses);
         return data;
     }
 
